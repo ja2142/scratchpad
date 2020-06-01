@@ -16,6 +16,15 @@
 	.controls{
 		margin-bottom: 0;
 	}
+	.input-container{
+		margin-left: 1em;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+	label{
+        white-space: nowrap;
+	}
 	textarea{
 		width: calc(100% - 2*20px);
 		min-height: 85vh;
@@ -73,8 +82,8 @@
 
 </head>
 <body id="body" onload="load()">
-	<div class="controls margin-l" style=" display: flex; flex-direction: row; align-items:center;">
-        <span class="switch" style=" display: flex; flex-direction: row; align-items:center;">
+	<div class="input-container controls margin-l">
+        <span class="switch input-container">
 			<label>
 			normal mode
 			<input type="checkbox" id="monospace_checkbox" onchange="toggle_hacker_mode()">
@@ -82,8 +91,8 @@
 			hacker_mode
 			</label>
 		</span>
-		<span style="width: 200px; margin-left: 1em; display: flex; flex-direction: row; align-items:center;">
-			<label class="margin-s" style="white-space: nowrap;" >Font size:</label>
+		<span class="input-container" style="width: 200px;">
+			<label class="margin-s">Font size:</label>
 			<input style="width:20vw; border: 0;" type="range" min="10" max="30" value="16" id="font_size_slider" oninput="update_font_size()">
 			<label class="margin-s" id="font_size_label">16</label>
 		</span>
