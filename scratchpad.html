@@ -14,7 +14,12 @@
 		margin: 2em;
 	}
 	.controls{
-		margin-bottom: 0;
+        transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
 	}
 	.input-container{
 		margin-left: 1em;
@@ -24,8 +29,8 @@
 	}
 	.hiding-switch{
         display:inline-block;
-        border-top:1em solid #84c7c1;
-        border-right:1em solid rgba(0,0,0,0);
+        border-top:1.6em solid #84c7c1;
+        border-right:1.6em solid rgba(0,0,0,0);
         cursor: pointer;
     }
     .hiding-switch:hover{
@@ -89,17 +94,21 @@
 	}
 	function update_options_visibility(){
         options = document.getElementById('options')
-        if(options.style.display === 'none'){
-            options.style = '';
+        if(options.style.opacity == '1'){
+            options.style.opacity = '0';
+            options.style.maxHeight = '0';
+            options.style.margin = '0';
         }else{
-            options.style.display = 'none';
+            options.style.opacity = '1';
+            options.style.maxHeight = '100px';
+            options.style.margin = '2em';
         }
 	}
 	</script>
 
 </head>
 <body id="body" onload="load()">
-	<div class="input-container controls margin-l" id="options">
+	<div class="input-container controls" id="options" style="opacity: 1; max-height: 100px; margin: 2em;">
         <span class="switch input-container">
 			<label>
 			normal mode
@@ -114,7 +123,7 @@
 			<label class="margin-s" id="font_size_label">16</label>
 		</span>
 	</div>
-    <div class="hiding-switch" title="show/hide options" onclick="update_options_visibility()"> </div>
+    <div class="hiding-switch" title="hide/show options" onclick="update_options_visibility()"> </div>
 	<textarea id="textarea" autofocus></textarea>
 </body>
 </html>
