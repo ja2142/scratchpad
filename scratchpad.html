@@ -68,7 +68,15 @@
 	</style>
 
 	<script>
-
+    greetings_texts = [
+        'Hello there!',
+        'Features hacker mode inspired by hackertyper.com',
+        '^^^\nUse the triangle to hide and show the options above'
+    ]
+    
+    function randomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
 	function toggle_hacker_mode(){
 		body = document.getElementById('body')
 		textarea = document.getElementById('textarea')
@@ -83,7 +91,7 @@
 	function load(){
 		autosize(document.querySelectorAll('textarea'));
 		textarea = document.getElementById('textarea')
-		textarea.placeholder = 'Hello there!';
+		textarea.placeholder = greetings_texts[randomInt(greetings_texts.length)];
 	}
 	function update_font_size(){
 		const font_size = document.getElementById('font_size_slider').value
@@ -119,7 +127,7 @@
 		</span>
 		<span class="input-container" style="width: 200px;">
 			<label class="margin-s">Font size:</label>
-			<input style="width:20vw; border: 0;" type="range" min="10" max="30" value="16" id="font_size_slider" oninput="update_font_size()">
+			<input style="width:20vw; border: 0;" type="range" min="14" max="72" value="16" id="font_size_slider" oninput="update_font_size()">
 			<label class="margin-s" id="font_size_label">16</label>
 		</span>
 	</div>
