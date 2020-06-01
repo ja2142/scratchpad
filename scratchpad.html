@@ -22,6 +22,15 @@
 		flex-direction: row;
 		align-items: center;
 	}
+	.hiding-switch{
+        display:inline-block;
+        border-top:1em solid #84c7c1;
+        border-right:1em solid rgba(0,0,0,0);
+        cursor: pointer;
+    }
+    .hiding-switch:hover{
+		border-top-color: #26a69a;
+    }
 	label{
         white-space: nowrap;
 	}
@@ -78,11 +87,22 @@
 		textarea.style.fontSize = font_size+'px'
 		autosize.update(textarea)
 	}
+	function update_options_visibility(){
+        console.log('x')
+        options = document.getElementById('options')
+        if(options.style.display === 'none'){
+            console.log('none')
+            options.style = '';
+        }else{
+            console.log('no nonoe')
+            options.style.display = 'none';
+        }
+	}
 	</script>
 
 </head>
 <body id="body" onload="load()">
-	<div class="input-container controls margin-l">
+	<div class="input-container controls margin-l" id="options">
         <span class="switch input-container">
 			<label>
 			normal mode
@@ -97,6 +117,7 @@
 			<label class="margin-s" id="font_size_label">16</label>
 		</span>
 	</div>
+    <div class="hiding-switch" onclick="update_options_visibility()"> </div>
 	<textarea id="textarea" autofocus></textarea>
 </body>
 </html>
