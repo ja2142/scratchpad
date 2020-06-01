@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<title>Scratchpad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/autosize@4.0.2/dist/autosize.min.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+	.margin-s{
+		margin: 0.4em;
+	}
+	.margin-l{
+		margin: 2em;
+	}
+	.controls{
+		margin-bottom: 0;
+	}
+	textarea{
+		width: calc(100% - 2*20px);
+		min-height: 85vh;
+		resize: none;
+		margin: 20px;
+		border: 0;
+		font-family: sans-serif;
+		color: black;
+		font-size: 16px;
+		
+		transition: color 1s;
+	}
+	textarea:focus{
+		outline: none;
+	}
+	textarea.hack{
+		font-family: monospace;
+		color: #00ff00;
+	}
+	body{
+		background-color: white;
+		transition: background-color 1s;
+	}
+	body.hack{
+		background-color: black;
+	}
+	</style>
+
+	<script>
+
+	function toggle_hacker_mode(){
+		body = document.getElementById('body')
+		textarea = document.getElementById('textarea')
+		if(document.getElementById('monospace_checkbox').checked){
+			body.classList.add('hack')
+			textarea.classList.add('hack')
+		}else{
+			body.classList.remove('hack')
+			textarea.classList.remove('hack')
+		}
+	}
+	function load(){
+		autosize(document.querySelectorAll('textarea'));
+	}
+	function update_font_size(){
+		const font_size = document.getElementById('font_size_slider').value
+		const textarea = document.getElementById('textarea')
+		document.getElementById('font_size_label').innerText = font_size
+		textarea.style.fontSize = font_size+'px'
+		autosize.update(textarea)
+	}
+	</script>
+
+</head>
+<body id="body" onload="load()">
+	<div class="controls margin-l">
+		
+		  <span class="switch">
+			<label>
+			normal mode
+			<input type="checkbox" id="monospace_checkbox" onchange="toggle_hacker_mode()">
+			<span class="lever"></span>
+			hacker_mode
+			</label>
+		</span>
+		<span style="width: 200px; margin-left: 1em;">
+			<label>Font size:</label>
+			<input style="width:20vw; border: 0;" type="range" min="10" max="30" value="16" id="font_size_slider" oninput="update_font_size()">
+			<label id="font_size_label">16</label>
+		</span>
+	</div>
+	<textarea id="textarea" autofocus>test</textarea>
+</body>
+</html>
