@@ -2,10 +2,9 @@
 <html>
 <head>
 	<title>Scratchpad</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/autosize@4.0.2/dist/autosize.min.js" crossorigin="anonymous"></script>
 	<style type="text/css">
 	.margin-s{
 		margin: 0.4em;
@@ -13,13 +12,21 @@
 	.margin-l{
 		margin: 2em;
 	}
+	.outer-container{
+		height: 100%;
+		margin: 0;
+		
+		display: flex;
+		flex-flow: column;
+		align-items: start;
+	}
 	.controls{
-        transition: all 0.5s ease-in-out;
-        -webkit-transition: all 0.5s ease-in-out;
-        -moz-transition: all 0.5s ease-in-out;
-        -ms-transition: all 0.5s ease-in-out;
-        -o-transition: all 0.5s ease-in-out;
-        transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-ms-transition: all 0.5s ease-in-out;
+		-o-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
 	}
 	.input-container{
 		margin-left: 1em;
@@ -28,20 +35,20 @@
 		align-items: center;
 	}
 	.hiding-switch{
-        display:inline-block;
-        border-top:1.6em solid #84c7c1;
-        border-right:1.6em solid rgba(0,0,0,0);
-        cursor: pointer;
-    }
-    .hiding-switch:hover{
+		display:inline-block;
+		border-top:1.6em solid #84c7c1;
+		border-right:1.6em solid rgba(0,0,0,0);
+		cursor: pointer;
+	}
+	.hiding-switch:hover{
 		border-top-color: #26a69a;
-    }
+	}
 	label{
-        white-space: nowrap;
+		white-space: nowrap;
 	}
 	textarea{
+		flex: 1;
 		width: calc(100% - 2*20px);
-		min-height: 85vh;
 		resize: none;
 		margin: 20px;
 		border: 0;
@@ -58,7 +65,11 @@
 		font-family: monospace;
 		color: #00ff00;
 	}
+	html{
+		height: 100%;
+	}
 	body{
+		height: 100%;
 		background-color: white;
 		transition: background-color 1s;
 	}
@@ -68,15 +79,15 @@
 	</style>
 
 	<script>
-    greetings_texts = [
-        'Hello there!',
-        'Features hacker mode inspired by hackertyper.com',
-        '^^^\nUse the triangle to hide and show the options above'
-    ]
-    
-    function randomInt(max) {
-        return Math.floor(Math.random() * max);
-    }
+	greetings_texts = [
+		'Hello there!',
+		'Features hacker mode inspired by hackertyper.com',
+		'^^^\nUse the triangle to hide and show the options above'
+	]
+	
+	function randomInt(max) {
+		return Math.floor(Math.random() * max);
+	}
 	function toggle_hacker_mode(){
 		body = document.getElementById('body')
 		textarea = document.getElementById('textarea')
@@ -89,7 +100,6 @@
 		}
 	}
 	function load(){
-		autosize(document.querySelectorAll('textarea'));
 		textarea = document.getElementById('textarea')
 		textarea.placeholder = greetings_texts[randomInt(greetings_texts.length)];
 	}
@@ -98,40 +108,41 @@
 		const textarea = document.getElementById('textarea')
 		document.getElementById('font_size_label').innerText = font_size
 		textarea.style.fontSize = font_size+'px'
-		autosize.update(textarea)
 	}
 	function update_options_visibility(){
-        options = document.getElementById('options')
-        if(options.style.opacity == '1'){
-            options.style.opacity = '0';
-            options.style.maxHeight = '0';
-            options.style.margin = '0';
-        }else{
-            options.style.opacity = '1';
-            options.style.maxHeight = '100px';
-            options.style.margin = '2em';
-        }
+		options = document.getElementById('options')
+		if(options.style.opacity == '1'){
+			options.style.opacity = '0';
+			options.style.maxHeight = '0';
+			options.style.margin = '0';
+		}else{
+			options.style.opacity = '1';
+			options.style.maxHeight = '100px';
+			options.style.margin = '2em';
+		}
 	}
 	</script>
 
 </head>
 <body id="body" onload="load()">
-	<div class="input-container controls" id="options" style="opacity: 1; max-height: 100px; margin: 2em;">
-        <span class="switch input-container">
-			<label>
-			normal mode
-			<input type="checkbox" id="monospace_checkbox" onchange="toggle_hacker_mode()">
-			<span class="lever"></span>
-			hacker_mode
-			</label>
-		</span>
-		<span class="input-container" style="width: 200px;">
-			<label class="margin-s">Font size:</label>
-			<input style="width:20vw; border: 0;" type="range" min="14" max="72" value="16" id="font_size_slider" oninput="update_font_size()">
-			<label class="margin-s" id="font_size_label">16</label>
-		</span>
+	<div class="outer-container">
+		<div class="input-container controls" id="options" style="opacity: 1; max-height: 100px; margin: 2em;">
+			<span class="switch input-container">
+				<label>
+				normal mode
+				<input type="checkbox" id="monospace_checkbox" onchange="toggle_hacker_mode()">
+				<span class="lever"></span>
+				hacker_mode
+				</label>
+			</span>
+			<span class="input-container" style="width: 200px;">
+				<label class="margin-s">Font size:</label>
+				<input style="width:20vw; border: 0;" type="range" min="14" max="72" value="16" id="font_size_slider" oninput="update_font_size()">
+				<label class="margin-s" id="font_size_label">16</label>
+			</span>
+		</div>
+		<div class="hiding-switch" title="hide/show options" onclick="update_options_visibility()"> </div>
+		<textarea id="textarea" autofocus></textarea>
 	</div>
-    <div class="hiding-switch" title="hide/show options" onclick="update_options_visibility()"> </div>
-	<textarea id="textarea" autofocus></textarea>
 </body>
 </html>
