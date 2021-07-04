@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512.005 512.005" height="512" viewBox="0 0 512.005 512.005" width="512">
+   <g transform="scale(0.7) translate(640, 80) rotate(120)">
+      <circle cx="100" cy="100" r="50" style="fill:rgb(248, 63, 42)"/>
+      <rect x="100" y="50" width="50" height="100" style="fill:rgb(248, 63, 42)" />
+
+      <polygon points="150,50 600,50 600,100 150,100" style="fill:hsla(38, 94%, 49%, 1);"/>
+      <polygon points="150,150 600,150 600,100 150,100" style="fill:hsla(38, 93%, 63%, 1);"/>
+
+      <polygon points="600,50 600,150 760,100" style="fill:hsla(38, 31%, 80%, 1);"/>
+      <polygon points="700,81 700,119 760,100" style="fill:hsl(38, 31%, 5%);"/>
+   </g>
+</svg>
+
